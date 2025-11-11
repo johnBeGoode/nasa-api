@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="container-fluid position-relative">
+        <img class="img-fluid" src="{{ asset('images/mars.jpg') }}" alt="">
+        <div class="position-absolute">
+            <div>
+                <h1 class="m-4 text-light">Latest Weather at Elysium Planitia</h1>
+                <p class="m-4 text-light w-50">
+                    InSight is taking daily weather measurements (temperature, wind, pressure) on the surface of Mars at Elysium Planitia, a flat, smooth plain near Mars' equator.
+                </p>
+            </div>
+            <div class="d-flex text-light ms-5 mb-5">
+                <div class="ms-5">
+                    <span class="fw-bold fs-2">Sol {{ data.sol_keys[6] }}</span> <br>
+                    <span class="fs-6 fw-light">{{ (data.681.First_UTC ?? '')|date('F j') }}</span>
+                </div>
+                <div class="ms-5">
+                    <span class="fw-light fs-4">High: {{ (data.681.AT.mx ?? '')|round(1) }}° F</span> <br>
+                    <span class="fw-light fs-4">Low: {{ (data.681.AT.mn ?? '')|round(1) }}° F</span>
+                </div>
+            </div>
+            <div class="row">
+                {% for sol, item in data %}
+                    {% if sol != "sol_keys" and sol != "validity_checks" %}
+                        <div class="card m-2 text-center bg-dark opacity-50" style="width: 12rem">
+                            <div class="card-body text-light">
+                                <h5 class="card-title">Sol {{ sol }}</h5>
+                                <p class="card-text">
+                                    {{ (item.First_UTC ?? '')|date('F j, Y') }}
+                                </p>
+                                <hr>
+                                <p class="card-text">
+                                    High: {{ (item.AT.mx ?? '')|round(1) }}° F <br>
+                                    Low: {{ (item.AT.mn ?? '')|round(1) }}° F
+                                </p>
+                                <span>{{ ux_icon('mingcute:information-line', {style: 'height: 1em;'}) }}</span>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
