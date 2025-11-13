@@ -36,7 +36,13 @@
                                     High: {{ (item.AT.mx ?? '')|round(1) }}° F <br>
                                     Low: {{ (item.AT.mn ?? '')|round(1) }}° F
                                 </p>
-                                <span>{{ ux_icon('mingcute:information-line', {style: 'height: 1em;'}) }}</span>
+                                <div class="position-relative">
+                                    <a href="#" class="text-light" data-bs-toggle="tooltip" data-bs-title="Average temp: {{ item.AT.av }}° F, Average HWS: {{ item.HWS.av }} m/s, Min HWS: {{ item.HWS.mn }} m/s, Max HWS: {{ item.HWS.mx }} m/s, Northern_season: {{ item.Northern_season }}, Southern_season: {{ item.Southern_season }}, Season: {{ item.Season }}, Average pressure: {{ item.PRE.av }} Pa, Min pressure: {{ item.PRE.mn }} Pa, Max pressure: {{ item.PRE.mx }} Pa, Wind direction at 12: {{ item.WD.12.compass_point }}">
+                                        <span class="position-absolute start-100 translate-middle ms-2">
+                                            {{ ux_icon('mingcute:information-line', {style: 'height: 1em;'}) }}
+                                        </span>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     {% endif %}

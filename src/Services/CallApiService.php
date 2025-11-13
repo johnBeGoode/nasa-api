@@ -3,7 +3,6 @@
 namespace App\Services;
 
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use Symfony\Component\DependencyInjection\Attribute\Autowire;
 
 class CallApiService
 {
